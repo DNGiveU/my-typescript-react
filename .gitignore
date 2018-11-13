@@ -4,3 +4,4 @@ package-lock.json
 .happypack
 npm-debug.log
 .DS_Store
+.vscode
