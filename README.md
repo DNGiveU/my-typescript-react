@@ -4,10 +4,12 @@
 ## React in TypeScript
 
 ```
-npm install -g webpack
+npm install --save-dev webpack webpack-cli
 ```
 
 Webpack 是一个将代码以及所有的依赖打包进一个独立的.js文件的工具。
+
+> 如果按照指示发生无法加载`webpack-cli/package.json`，则多数是由于`webpack`和`webpack-cli`版本不兼容。请选择同一个大版本，如 3.x.x
 
 ```
 npm install --save react react-dom @types/react @types/react-dom
@@ -123,5 +125,7 @@ You might be wondering about that `externals` field. We want to avoid bundling a
 #### Putting it all together
 
 ```
-webpack
+$ npm install --save awesome-typescript-loader
+$ npm install --save-dev typescript
+$ webpack
 ```
