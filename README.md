@@ -15,6 +15,8 @@ Webpack 是一个将代码以及所有的依赖打包进一个独立的.js文件
 npm install --save react react-dom @types/react @types/react-dom
 ```
 
+核心依赖，请勿加`-dev`
+
 #### Add a TypeScript configuration file
 
 `tsconfig.json`包含一系列的输入文件以及编译设置
@@ -127,5 +129,15 @@ You might be wondering about that `externals` field. We want to avoid bundling a
 ```
 $ npm install --save awesome-typescript-loader
 $ npm install --save-dev typescript
-$ webpack
+$ webpack --config webpack.config.js
+```
+
+或者在`package.json`中写入脚本命令
+
+```
+"scripts": {
+    "dev": "webpack --config webpack.config.js"
+}
+
+$ npm run dev
 ```
