@@ -64,7 +64,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "63d65e76e1ae7591bf64";
+/******/ 	var hotCurrentHash = "dc60ebcf493f8a58adfe";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -820,32 +820,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
 var Hello = /** @class */ (function (_super) {
     __extends(Hello, _super);
-    function Hello() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function Hello(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        _this.state = { visible: true };
+        return _this;
     }
     Hello.prototype.render = function () {
-        return React.createElement("h1", null,
-            "Hello from ",
-            this.props.compiler,
-            " and ",
-            this.props.framework,
-            "!");
+        return (React.createElement("div", null,
+            React.createElement("h1", null,
+                "Hello from ",
+                this.props.compiler,
+                " and ",
+                this.props.framework,
+                "!"),
+            React.createElement("div", null,
+                "this is state props ",
+                this.state.visible ? 'true' : 'false')));
     };
     return Hello;
 }(React.Component));
 exports.Hello = Hello;
-/*
- * stateless functional components
-
-import * as React from 'react';
-
-export interface HelloProps {
-    cimpiler: string;
-    framework: string;
-}
-
-export const Hello = (props: HelloProps) => <h1>Hello from {props.cimpiler} and {props.framework}!</h1>
-*/ 
 
 
 /***/ }),

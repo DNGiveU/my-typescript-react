@@ -154,3 +154,68 @@ $ webpack --config webpack.config.js
 
 $ npm run dev
 ```
+## 小细节
+
+- 用@types去安装react的声明文件后，可能会发现 ` import React from 'react' ` 会报一个没有默认导出的错，你需要在tsconfig.json里面新增一条` "allowSyntheticDefaultImports":true `的配置。tsx解析出错的话记得` "jsx":"react" `的配置。
+- typescript配合react的话，**不需要**proptypes，typescript的类型检查比他强多了
+- 如果使用redux的话，为state建立一个类型声明会让你方便很多，记得尽量减少对象层级嵌套，不仅仅在使用typescript时方便，而且本身也是最佳实践。
+- redux的connect可以当作装饰器使用。如果不追求pure function的话，类继承的写法可能会很漂亮。
+- 如果使用webpack，可以考虑用` awesome-typescript-loader `，据说比` ts-loader `好（但是我没试过）
+
+## 用TypeScript与JavaScript开发React的区别
+
+#### 文件定义
+
+- [JavaScript] 文件定义为`js`或者`jsx`
+- [TypeScript] 文件定义为`tsx`
+
+#### state状态
+
+- [JavaScript]
+
+```
+constructor(props) {
+    super(props);
+    this.state = {};
+}
+```
+- [TypeScript] 先定义一个接口(props/state)，规范数据类型，通过泛型传入
+
+```
+export interface Props {
+    outerProp: any
+}
+export interface State {
+    internalState: any
+}
+
+export default class ReactComponent extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        // 实例化状态
+        this.state = { internalState: '' }
+    }
+}
+```
+
+#### 获取DOM节点
+
+- [JavaScript] 在生命周期钩子函数`componentDidMount`获取
+
+```
+const myRef = this.refs.refName;
+const myRefDom = ReactDom.findDOMNode(myRef);
+```
+
+- [TypeScript]
+
+```
+import * as ReactDOM from 'react-dom';
+
+componentDidMount() {
+    let myDOM = ReactDOM.findDOMNode<HTMLInputElement>(this.refs['refName']);
+    myDOM.addEventListener('click', () => {
+
+    });
+}
+```

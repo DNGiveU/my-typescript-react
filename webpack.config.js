@@ -31,7 +31,11 @@ module.exports = {
     // https://webpack.js.org/configuration/resolve/
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: ['.ts', '.tsx', '.js', '.json']
+        extensions: ['.ts', '.tsx', '.js', '.json'],
+        // alias 配置 - 如果使用ts，请在tsconfig.json中的compilerOptions选项配置模块路径映射baseUrl: ".", paths: {'': []} 如：paths: {'@utils/*': ['./src/utils']}
+        alias: {
+            '@utils': path.resolve(__dirname, 'src', 'utils')
+        }
     },
     module: {
         rules: [
